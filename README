@@ -1,2 +1,4 @@
-Entropy
-=======
+Modular entropy calculation from network capture
+================================================
+
+The project objective is to use a pcap file (or a live pcap stream) to calculate the entropy of the TCP and UDP payload of packets seen.
