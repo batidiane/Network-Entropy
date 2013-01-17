@@ -3,3 +3,10 @@ Modular entropy calculation from network capture
 
 The project objective is to use a pcap file (or a live pcap stream) to calculate the entropy of the TCP and UDP payload of packets seen using different
 algorithms
+
+First Step: Packet entropy calculation from capture file
+========================================================
+
+We are trying to calculate entropy of packets from a capture file using 2 algorithms:
+ - shannon entropy
+ - an approximation of kolmogorov entropy by using the compression rate of the packet
