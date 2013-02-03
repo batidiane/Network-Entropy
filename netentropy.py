@@ -37,7 +37,7 @@ def decodeipv4(ip):
         pktinfos['proto_name'] = 'ICMP'
         pktinfos['src_port'] = 0
         pktinfos['dst_port'] = 0
-        payload = icmp.data
+        payload = str(icmp.data)
     else:
         return None, None
            
