@@ -1,12 +1,45 @@
 Modular entropy calculation from network capture
-================================================
+------------------------------------------------
 
-The project objective is to use a pcap file (or a live pcap stream) to calculate the entropy of the TCP and UDP payload of packets seen using different
-algorithms
+The project objective is to use a pcap file or a live pcap stream to calculate the entropy of the TCP and UDP payload of packets seen using different
+algorithms (shannon or a approximation of kolmogorov)
 
 First Step: Packet entropy calculation from capture file
-========================================================
+--------------------------------------------------------
 
-We are trying to calculate entropy of packets from a capture file using 2 algorithms:
+capanalyser.py calculate entropy of packets from a capture file using:
  - shannon entropy
  - an approximation of kolmogorov entropy by using the compression rate of the packet
+
+Second Step: calculate entropy from a capture file or from live capture stream
+------------------------------------------------------------------------------
+
+netentropy.py calculate TCP, UDP and ICMP payload entropy from capture file or from live stream.
+Several option are added to format the output.
+
+How to use it:
+--------------
+netentropy.py [-h] [-i INTERFACE | -f PCAPFILE] [-a {sha,kol}] bpf
+
+Calculate entropy from live capture or pcap file
+
+positional arguments:
+  bpf                   BPF filter like "tcp and port 22"
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -i INTERFACE, --interface INTERFACE
+                        live capture from an interface (default:lo)
+  -f PCAPFILE, --file PCAPFILE
+                        filename of a capture file to read from
+  -a {sha,kol}, --algo {sha,kol}
+                        entropy algorithm. 2 choices: "sha" for shannon
+                        entropy or "kol" for kolmogorov
+
+Output format:
+--------------
+epoch | ip_src:port > ip_dst:port | protocole name | entropy
+
+samples:
+1359930733 | 192.168.178.25:59063 > 173.194.70.113:443 | proto:TCP | sha:1.503114
+1359931779 | 173.194.70.19:443 > 192.168.178.25:34729 | proto:TCP | kol:1.196429
