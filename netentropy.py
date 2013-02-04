@@ -13,7 +13,7 @@ calculateentropy={
     'kol':kolmogorov
 }
 algorithm =  'sha'
-
+   
 def decodeipv4(ip):
     pktinfos = dict()
     pktinfos['src_addr'] = pcap.ntoa(struct.unpack('i',ip.src)[0])
@@ -66,14 +66,15 @@ def analysepacket (pktlen, data, timestamp):
     pktinfos, payload = extractpayload(dpkt.ethernet.Ethernet(data))
     
     if pktinfos and payload:
-        print '\n%d | %s:%d > %s:%d | proto:%s | %s:%f' % (timestamp,
+        print '\n%d | %s:%d > %s:%d | proto:%s | %s:%f | len:%d' % (timestamp,
                                   pktinfos['src_addr'],
                                   pktinfos['src_port'],
                                   pktinfos['dst_addr'],
                                   pktinfos['dst_port'],
                                   pktinfos['proto_name'],
                                   algorithm,
-                                  calculateentropy[algorithm](payload))
+                                  calculateentropy[algorithm](payload),
+                                  len(payload))
     
 '''
     main function
