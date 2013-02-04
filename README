@@ -35,11 +35,13 @@ optional arguments:
   -a {sha,kol}, --algo {sha,kol}
                         entropy algorithm. 2 choices: "sha" for shannon
                         entropy or "kol" for kolmogorov
+                        
+You will need to install the dpkt library (http://code.google.com/p/dpkt/)
 
 Output format:
 --------------
-epoch | ip_src:port > ip_dst:port | protocole name | entropy
+epoch | ip_src:port > ip_dst:port | protocole name | entropy | payload length
 
 samples:
-1359930733 | 192.168.178.25:59063 > 173.194.70.113:443 | proto:TCP | sha:1.503114
-1359931779 | 173.194.70.19:443 > 192.168.178.25:34729 | proto:TCP | kol:1.196429
+1359930733 | 192.168.178.25:59063 > 173.194.70.113:443 | proto:TCP | sha:1.503114 | len:450
+1359931779 | 173.194.70.19:443 > 192.168.178.25:34729 | proto:TCP | kol:1.196429 | len:450
